@@ -1,0 +1,101 @@
+# ==============================================================================
+# 独立合成场景测试配置文件 (synthetic_config.yaml)
+# 数据性质：合成测试数据 (Synthetic Test Data)
+# 用途：证明通用工具链不依赖太阳谷目录、D1~D8 建筑名或 UTM 47N 固定原点
+# ==============================================================================
+
+project_name: "Synthetic_Campus_3D_Showcase_V1"
+project_description: "合成测试场景：3栋不同类型建筑 + 弯曲丁字路口贴地道路 + UTM 50N 控制点配准 + 3.0m加密红线"
+
+blender_file: "/tmp/b2ge_synthetic_demo/synthetic_campus.blend"
+output_dir: "/tmp/b2ge_synthetic_demo/output"
+output_kmz: "/tmp/b2ge_synthetic_demo/output/synthetic_campus_v1.kmz"
+output_kml: "/tmp/b2ge_synthetic_demo/output/doc.kml"
+export_glb: true
+output_glb: "/tmp/b2ge_synthetic_demo/output/synthetic_campus.glb"
+
+# 采用 UTM Zone 50N 与控制点最小二乘配准 (完全不同于太阳谷的 UTM 47N)
+coordinate_reference:
+  mode: "control_points"
+  utm_zone: 50
+  hemisphere: "N"
+  allow_scale_fit: false
+  control_points:
+    - {id: "CP_SW", blender_x: -70.0, blender_y: -40.0, utm_e: 389930.000, utm_n: 3170960.000}
+    - {id: "CP_SE", blender_x:  80.0, blender_y: -40.0, utm_e: 390080.000, utm_n: 3170960.000}
+    - {id: "CP_NE", blender_x:  80.0, blender_y:  50.0, utm_e: 390080.000, utm_n: 3171050.000}
+    - {id: "CP_NW", blender_x: -70.0, blender_y:  50.0, utm_e: 389930.000, utm_n: 3171050.000}
+
+look_at:
+  longitude: 115.874450
+  latitude: 28.661250
+  altitude: 0.0
+  heading: 15.0
+  tilt: 45.0
+  range: 220.0
+  altitude_mode: "relativeToGround"
+
+buildings:
+  - id: "Alpha_Tower"
+    title: "Alpha 研发塔楼 (Collection Instance)"
+    folder: "01_合成园区建筑群"
+    source_object: "Alpha_Tower_Inst"
+    altitude_rel_ground_m: 0.50
+    auto_plinth_depth_m: 1.50
+    exclude_subobject_keywords: ["Indoor_Furniture"]
+  - id: "Beta_Hall"
+    title: "Beta 学术报告厅 (非均匀缩放 Instance)"
+    folder: "01_合成园区建筑群"
+    source_object: "Beta_Hall_Inst"
+    altitude_rel_ground_m: 0.50
+    auto_plinth_depth_m: 1.50
+    exclude_subobject_keywords: []
+  - id: "Gamma_Pavilion"
+    title: "Gamma 展馆 (独立 Mesh 对象)"
+    folder: "01_合成园区建筑群"
+    source_object: "Gamma_Pavilion_Mesh"
+    altitude_rel_ground_m: 0.40
+    auto_plinth_depth_m: 1.20
+    exclude_subobject_keywords: []
+
+roads:
+  enabled: true
+  mode: "kml_draped_polygon"
+  folder_name: "02_合成园区道路系统 (贴地多边形)"
+  polygon_layers:
+    - id: "campus_carriageway"
+      name: "01_园区主干弯曲车行道与北支路"
+      style_id: "roadAsphaltStyle"
+      color_abgr: "ff3a3a3c"
+      subtract_previous: false
+      source_objects: ["Main_Curved_Road", "North_Branch_Road"]
+    - id: "campus_sidewalk"
+      name: "02_园区人行步道 (布尔差集去重)"
+      style_id: "sidewalkPavingStyle"
+      color_abgr: "ff707073"
+      subtract_previous: true
+      source_objects: ["Campus_Sidewalk"]
+  marking_layers:
+    - id: "campus_dash"
+      name: "03_道路中心虚线"
+      style_id: "roadMarkingWhiteStyle"
+      color_abgr: "ffffffff"
+      width: 2.2
+      extract_mode: "centerline"
+      object_prefixes: ["Dash_Line_"]
+
+redline:
+  enabled: true
+  folder_name: "03_合成园区地块红线与界址点"
+  interpolation_step_m: 3.0
+  enhanced_height_offset_m: 1.2
+  clamp_layer_visible: false
+  enhanced_layer_visible: true
+  points_layer_visible: true
+  points:
+    - {id: "B01", blender_x: -70.0, blender_y: -40.0}
+    - {id: "B02", blender_x:  10.0, blender_y: -42.0}
+    - {id: "B03", blender_x:  80.0, blender_y: -35.0}
+    - {id: "B04", blender_x:  82.0, blender_y:  48.0}
+    - {id: "B05", blender_x:   0.0, blender_y:  52.0}
+    - {id: "B06", blender_x: -70.0, blender_y:  45.0}

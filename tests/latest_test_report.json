@@ -1,0 +1,365 @@
+{
+  "overall_status": "PASS",
+  "tests": [
+    {
+      "test_name": "测试一：Skill 格式与规范测试",
+      "status": "PASS",
+      "frontmatter": {
+        "name": "blender-to-google-earth",
+        "description": "Blender 三维模型与 Google Earth 地理场景融合 (V1.0)。当用户需要将 Blender (.blend) 中的建筑、园区、道路或地块红线导出并配准到 Google Earth Pro (.kmz/.kml)，或需要修复 Google Earth 中的道路断口/台阶、低视角红线穿地消失、界址点重复标签、局部替换 KMZ 模型并执行自动化质量验收时使用此技能。"
+      },
+      "checked_links_count": 15,
+      "checked_links": [
+        {
+          "link": "./scripts/b2ge_cli.py",
+          "exists": true
+        },
+        {
+          "link": "./scripts/blender_extractor.py",
+          "exists": true
+        },
+        {
+          "link": "./scripts/road_processor.py",
+          "exists": true
+        },
+        {
+          "link": "./scripts/redline_processor.py",
+          "exists": true
+        },
+        {
+          "link": "./scripts/kmz_builder.py",
+          "exists": true
+        },
+        {
+          "link": "./scripts/kmz_verifier.py",
+          "exists": true
+        },
+        {
+          "link": "./templates/project_config.yaml",
+          "exists": true
+        },
+        {
+          "link": "./references/01_blender_to_dae_conversion.md",
+          "exists": true
+        },
+        {
+          "link": "./references/02_kml_kmz_dae_organization.md",
+          "exists": true
+        },
+        {
+          "link": "./references/04_v1_road_failure_case_study.md",
+          "exists": true
+        },
+        {
+          "link": "./references/05_v2_draped_road_polygon_guide.md",
+          "exists": true
+        },
+        {
+          "link": "./references/06_v3_redline_and_labels_guide.md",
+          "exists": true
+        },
+        {
+          "link": "./references/03_crs_and_georeferencing.md",
+          "exists": true
+        },
+        {
+          "link": "./references/07_google_earth_pro_qa_checklist.md",
+          "exists": true
+        },
+        {
+          "link": "./examples/phuket_solar_valley_v3/solar_valley_v1_to_v3_review.md",
+          "exists": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "test_name": "测试二：太阳谷 V3 回归测试",
+      "status": "PASS",
+      "official_v3_untouched": true,
+      "official_v3_sha256": "47b3c6495fcf80d00282adedfcd674f7cd12066f465c57f7976f843214a8f13a",
+      "regression_kmz": "/tmp/b2ge_regression_solar_valley_v3/solar_valley_v3_regression.kmz",
+      "comparison": {
+        "regression_status": "PASS",
+        "candidate_kmz": "/tmp/b2ge_regression_solar_valley_v3/solar_valley_v3_regression.kmz",
+        "baseline_kmz": "/Users/macminim1/AI开发/普吉太阳谷_GoogleEarth三维展示/01_西侧8栋住宅_酒店_道路_导入测试/普吉太阳谷_西侧8栋住宅_六层酒店_道路红线优化版_V3.kmz",
+        "models_compared": 9,
+        "all_dae_hashes_identical": true,
+        "all_coords_within_tolerance": true,
+        "road_polygons_match": true,
+        "boundary_points_match": true,
+        "linestrings_vertices_match": true,
+        "differences": [],
+        "model_details": [
+          {
+            "name": "D1_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "2ef4f953f53145736480907393898ee6eaa4741f386891a8618bd9ed2c25a9c6",
+            "candidate_sha256": "2ef4f953f53145736480907393898ee6eaa4741f386891a8618bd9ed2c25a9c6"
+          },
+          {
+            "name": "D2_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "c365345849b91b8dc5c15911e9da39b1c5148d6953093494cf8280ecffac026e",
+            "candidate_sha256": "c365345849b91b8dc5c15911e9da39b1c5148d6953093494cf8280ecffac026e"
+          },
+          {
+            "name": "D3_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "7a2a49babb99df9c87b93038c71187db7d1774e917ffb242a3e6e07111a8487d",
+            "candidate_sha256": "7a2a49babb99df9c87b93038c71187db7d1774e917ffb242a3e6e07111a8487d"
+          },
+          {
+            "name": "D4_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "f827716d35a4e0b5040c4719710d838975d488b7cd96e62a07c9492d40748126",
+            "candidate_sha256": "f827716d35a4e0b5040c4719710d838975d488b7cd96e62a07c9492d40748126"
+          },
+          {
+            "name": "D5_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "0d71a03b3e90f9a67313a72873b3e05c8457d82a3fa3b3dc5eccf3b6b3ff5566",
+            "candidate_sha256": "0d71a03b3e90f9a67313a72873b3e05c8457d82a3fa3b3dc5eccf3b6b3ff5566"
+          },
+          {
+            "name": "D6_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "0496c578ce7c9bfa52dc7d7f6509d1d58bc6bc584c36e8ec0cf1be56c35ac26d",
+            "candidate_sha256": "0496c578ce7c9bfa52dc7d7f6509d1d58bc6bc584c36e8ec0cf1be56c35ac26d"
+          },
+          {
+            "name": "D7_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "2a4d0937b7b9b833da8fce185be2a3f08d11d0197624c2465d5918d369191595",
+            "candidate_sha256": "2a4d0937b7b9b833da8fce185be2a3f08d11d0197624c2465d5918d369191595"
+          },
+          {
+            "name": "D8_独栋四层",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "260bbd91dd02f532d3500bf6bed3c450e28a8810122c59b6bb99dd7aea74e00d",
+            "candidate_sha256": "260bbd91dd02f532d3500bf6bed3c450e28a8810122c59b6bb99dd7aea74e00d"
+          },
+          {
+            "name": "Hotel_六层综合酒店",
+            "coord_match": true,
+            "dlon_deg": 0.0,
+            "dlat_deg": 0.0,
+            "dalt_m": 0.0,
+            "dae_sha256_identical": true,
+            "baseline_sha256": "e7b077d4ce5c54ddcaa1cae1a75b490b5b412d5530fc0921105f82f496615d68",
+            "candidate_sha256": "e7b077d4ce5c54ddcaa1cae1a75b490b5b412d5530fc0921105f82f496615d68"
+          }
+        ]
+      }
+    },
+    {
+      "test_name": "测试三：全新独立合成场景测试 (Synthetic Data)",
+      "data_nature": "SYNTHETIC_TEST_DATA (合成测试场景，独立于太阳谷)",
+      "status": "PASS",
+      "scan_summary": {
+        "total_collections": 3,
+        "collection_instances_count": 2,
+        "standalone_meshes_count": 14,
+        "other_objects_by_type": {},
+        "total_materials": 8
+      },
+      "crs_summary": {
+        "mode": "control_points",
+        "utm_zone": 50,
+        "hemisphere": "N",
+        "origin_easting_m": 390000.0,
+        "origin_northing_m": 3171000.0,
+        "rotation_deg": 0.0,
+        "scale": 1.0,
+        "site_meridian_convergence_deg": -0.539966,
+        "rmse_m": 0.0,
+        "max_residual_m": 0.0,
+        "registration_status": "CONTROL_POINT_FITTED (N=4, RMSE=0.0000m, MaxRes=0.0000m·可视化配准)"
+      },
+      "redline_stats": {
+        "unique_boundary_points": 6,
+        "interpolated_vertices": 161,
+        "interpolation_step_m": 3.0,
+        "enhanced_height_offset_m": 1.2,
+        "perimeter_m": 470.845
+      },
+      "verification": {
+        "status": "PASS",
+        "kmz_path": "/tmp/b2ge_synthetic_demo/output/synthetic_campus_v1.kmz",
+        "kmz_size_bytes": 57507,
+        "models_count": 3,
+        "models": [
+          {
+            "name": "Alpha_Tower",
+            "dae_href": "models/Alpha_Tower.dae",
+            "dae_sha256": "02060d6284e0e433a9dcf08e760707edce3fdbe21bdc526b1392a8f4c3c773ef",
+            "lon": 115.87397035,
+            "lat": 28.66130583,
+            "altitude_m": 0.5,
+            "double_sided": true,
+            "textures_count": 5
+          },
+          {
+            "name": "Beta_Hall",
+            "dae_href": "models/Beta_Hall.dae",
+            "dae_sha256": "6c72789a02d99baddd5b972f0fe2173b54b468127e1daf6a303500e7ed54e467",
+            "lon": 115.8743744,
+            "lat": 28.66129148,
+            "altitude_m": 0.5,
+            "double_sided": true,
+            "textures_count": 5
+          },
+          {
+            "name": "Gamma_Pavilion",
+            "dae_href": "models/Gamma_Pavilion.dae",
+            "dae_sha256": "cd5f254b8598499737d79719587fdb25a2dd1ab1b4c875fce0ec20d4339634a9",
+            "lon": 115.87475188,
+            "lat": 28.66159398,
+            "altitude_m": 0.4,
+            "double_sided": true,
+            "textures_count": 2
+          }
+        ],
+        "road_polygons_count": 2,
+        "boundary_points_count": 6,
+        "unique_boundary_points": 6,
+        "linestrings_count": 7,
+        "linestrings": [
+          {
+            "name": "campus_dash_1",
+            "visibility": "1",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 2
+          },
+          {
+            "name": "campus_dash_2",
+            "visibility": "1",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 2
+          },
+          {
+            "name": "campus_dash_3",
+            "visibility": "1",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 2
+          },
+          {
+            "name": "campus_dash_4",
+            "visibility": "1",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 2
+          },
+          {
+            "name": "campus_dash_5",
+            "visibility": "1",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 2
+          },
+          {
+            "name": "01_地表贴合红线 (俯视推荐)",
+            "visibility": "0",
+            "altitude_mode": "clampToGround",
+            "vertices_count": 161
+          },
+          {
+            "name": "02_低视角增强红线 (倾斜推荐·高出地面1.2m)",
+            "visibility": "1",
+            "altitude_mode": "relativeToGround",
+            "vertices_count": 161
+          }
+        ],
+        "orphan_files": [],
+        "issues": [],
+        "warnings": [],
+        "gui_verification_status": "UNVERIFIED (仅完成静态结构检查，未执行 Google Earth Pro GUI 渲染检查)"
+      },
+      "issues": []
+    },
+    {
+      "test_name": "测试四：局部无损更新测试",
+      "status": "PASS",
+      "all_unmodified_models_identical": true,
+      "preserved_models_audit": [
+        {
+          "arcname": "models/Alpha_Tower.dae",
+          "sha256_before": "02060d6284e0e433a9dcf08e760707edce3fdbe21bdc526b1392a8f4c3c773ef",
+          "sha256_after": "02060d6284e0e433a9dcf08e760707edce3fdbe21bdc526b1392a8f4c3c773ef",
+          "identical": true
+        },
+        {
+          "arcname": "models/Beta_Hall.dae",
+          "sha256_before": "6c72789a02d99baddd5b972f0fe2173b54b468127e1daf6a303500e7ed54e467",
+          "sha256_after": "6c72789a02d99baddd5b972f0fe2173b54b468127e1daf6a303500e7ed54e467",
+          "identical": true
+        },
+        {
+          "arcname": "models/Gamma_Pavilion.dae",
+          "sha256_before": "cd5f254b8598499737d79719587fdb25a2dd1ab1b4c875fce0ec20d4339634a9",
+          "sha256_after": "cd5f254b8598499737d79719587fdb25a2dd1ab1b4c875fce0ec20d4339634a9",
+          "identical": true
+        }
+      ],
+      "roads_polygons_before_after": [
+        2,
+        2
+      ],
+      "redline_vertices_before_after": [
+        161,
+        317
+      ]
+    },
+    {
+      "test_name": "测试五：真实 Google Earth Pro 验证",
+      "status": "PASS",
+      "details": {
+        "gui_verification_status": "PASS",
+        "captured_files": [
+          {
+            "filename": "GE_Synthetic_01_Overview.png",
+            "path": "/tmp/b2ge_synthetic_demo/screenshots/GE_Synthetic_01_Overview.png",
+            "window_id": 10144,
+            "size_bytes": 10528894
+          },
+          {
+            "filename": "GE_Synthetic_02_LowTilt_68deg.png",
+            "path": "/tmp/b2ge_synthetic_demo/screenshots/GE_Synthetic_02_LowTilt_68deg.png",
+            "window_id": 10170,
+            "size_bytes": 10346267
+          }
+        ]
+      }
+    }
+  ]
+}

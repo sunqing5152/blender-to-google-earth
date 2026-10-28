@@ -1,0 +1,98 @@
+# ==============================================================================
+# blender-to-google-earth 标准项目配置模板 (project_config.yaml)
+# 用途：将任意 Blender (.blend) 建筑规划场景转换为 Google Earth Pro (.kmz)
+# 说明：所有相对路径均相对于本配置文件所在目录解析，无需写死绝对路径。
+# ==============================================================================
+
+project_name: "示例项目_三维规划展示"
+project_description: "AI研发测试稿｜可视化候选配准｜禁止直接用于工程施工放线"
+
+# 1. 输入与输出路径
+blender_file: "./input/master_scene.blend"
+output_dir: "./output"
+output_kmz: "./output/scene_showcase_v1.kmz"
+output_kml: "./output/doc.kml"
+export_glb: false
+output_glb: "./output/scene_web_preview.glb"
+
+# 2. 地理坐标参考与配准设置 (支持三种模式: utm_offset | control_points | local_lonlat)
+coordinate_reference:
+  mode: "utm_offset"              # 可选: utm_offset (已知UTM原点) | control_points (控制点最小二乘拟合) | local_lonlat (单点经纬度锚点)
+  utm_zone: 48                    # UTM 分带号 (1~60)，切勿盲目沿用其他项目的分带
+  hemisphere: "N"                 # 半球: "N" (北半球) 或 "S" (南半球)
+  origin_easting: 500000.000      # Blender (0,0,0) 对应的 UTM 东坐标 E0 (m)
+  origin_northing: 2500000.000    # Blender (0,0,0) 对应的 UTM 北坐标 N0 (m)
+  rotation_deg: 0.0               # Blender +X/+Y 相对于 UTM 网格东/北的附加旋转角 (度)
+  scale: 1.0                      # 全局均匀比例尺 (默认 1.0)
+  registration_status: "PROPOSED_CANDIDATE_ALIGNMENT (可视化候选配准·非测绘确认)"
+
+  # 若使用 control_points 模式，提供至少 2 个控制点对：
+  # control_points:
+  #   - {id: "CP1", blender_x: 0.0, blender_y: 0.0, wgs84_lon: 114.05786, wgs84_lat: 22.54309}
+  #   - {id: "CP2", blender_x: 100.0, blender_y: 0.0, wgs84_lon: 114.05883, wgs84_lat: 22.54309}
+
+# 3. Google Earth 初始飞行视角 (LookAt)
+look_at:
+  longitude: 114.058000
+  latitude: 22.543000
+  altitude: 0.0
+  heading: -15.0
+  tilt: 55.0
+  range: 350.0
+  altitude_mode: "relativeToGround"
+
+# 4. 目标建筑导出清单 (支持 Collection Instance、独立 Mesh 对象或整个 Collection)
+buildings:
+  - id: "Bldg_01"
+    title: "1号主体建筑"
+    folder: "01_核心建筑组"
+    source_object: "Building_A_Instance"   # Blender 中的对象名或集合名
+    altitude_rel_ground_m: 0.50            # 相对地面抬升高度 (m)
+    auto_plinth_depth_m: 1.20              # 自动向下拉伸防坡地悬空基座裙边深度 (m)，设为 0 则不生成
+    exclude_subobject_keywords: []         # 可选：需剔除的室内细碎构件关键词列表 (默认为空，保留全部子对象)
+
+# 5. 展示型道路生成配置 (默认优先采用 KML Polygon + clampToGround 贴地多边形)
+roads:
+  enabled: true
+  mode: "kml_draped_polygon"               # 推荐: kml_draped_polygon (避免3D切片道路断口与水泥厚裙边)
+  folder_name: "02_内部道路与铺装系统 (贴地多边形)"
+  polygon_layers:
+    - id: "carriageway"
+      name: "01_主车行道 (沥青)"
+      style_id: "roadAsphaltStyle"
+      color_abgr: "ff3a3a3c"               # KML AABBGGRR 颜色格式
+      subtract_previous: false             # 第一优先级图层不裁切
+      source_objects: ["Road_Mesh"]
+    - id: "sidewalk"
+      name: "02_人行步道 (石材)"
+      style_id: "sidewalkPavingStyle"
+      color_abgr: "ff707073"
+      subtract_previous: true              # 自动减去车行道区域，消除重叠闪烁 (Z-fighting)
+      source_objects: ["Sidewalk_Mesh"]
+  marking_layers:
+    - id: "center_dash"
+      name: "03_道路标线"
+      style_id: "roadMarkingWhiteStyle"
+      color_abgr: "ffffffff"
+      width: 2.2
+      extract_mode: "centerline"
+      object_prefixes: ["Road_Dash_"]
+
+# 6. 地块红线与界址点配置 (支持加密插值 + 贴地/低视角浮空双层架构)
+redline:
+  enabled: true
+  folder_name: "03_地块红线与界址点 (可分层开关)"
+  interpolation_step_m: 2.0                # 相邻界址点加密插值间距 (m)，适应起伏地形
+  enhanced_height_offset_m: 1.0            # 低视角增强红线离地高度 (m)
+  clamp_layer_visible: false               # 贴地红线默认隐藏，避免斜视双轨重影
+  enhanced_layer_visible: true             # 低视角增强红线默认开启
+  points_layer_visible: true               # 界址点默认显示
+  clamp_color_abgr: "ff0022ff"
+  clamp_width: 3.0
+  enhanced_color_abgr: "ff0022ff"
+  enhanced_width: 4.0
+  points:
+    - {id: "J01", blender_x: -50.0, blender_y: -30.0}
+    - {id: "J02", blender_x:  60.0, blender_y: -30.0}
+    - {id: "J03", blender_x:  60.0, blender_y:  45.0}
+    - {id: "J04", blender_x: -50.0, blender_y:  45.0}
