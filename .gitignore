@@ -3,3 +3,18 @@
 __pycache__/
 */__pycache__/
 *.pyc
+
+# 忽略所有实验生成的模型、中间包与数据报告
+*.blend
+*.blend1
+*.kmz
+*.kml
+*.glb
+*.dae
+*.png
+*.jpg
+*.jpeg
+*.log
+tests/latest_test_report.json
+output/
+/tmp/
