@@ -94,3 +94,18 @@ python3 ./scripts/b2ge_cli.py verify --kmz ./output/scene_showcase.kmz --launch-
 
 ## 📄 开源许可
 采用 [MIT License](LICENSE) 许可协议。
+
+---
+
+## 🗺️ 新增：奥维互动地图专用 Skill（独立 V1.0）
+
+本仓库保留原有 Google Earth Skill，同时新增一套**独立的 Mac 奥维互动地图模型导入流程**，两者不会相互覆盖：
+
+| Skill | 入口 | 用途 |
+| --- | --- | --- |
+| `blender-to-google-earth` | [原有 SKILL.md](SKILL.md) | Blender 建筑、道路、红线 → Google Earth KMZ |
+| `blender-to-ovital-map` | [奥维 SKILL.md](skills/blender-to-ovital-map/SKILL.md) | 已有 KMZ 建筑定位 + 单体 OBJ/MTL/贴图 → 奥维合体 OBJ 导入包 |
+
+**奥维 V1.0 的实际能力**：自动合并多个已有 OBJ、转换和核验地理锚点、正确处理 OBJ 的 Y/Z 上轴、保留材质贴图、输出独立的道路红线 KML 与定位清单，并进行离线测试。**当前仍需用户在 Mac 奥维互动地图中手动导入 OBJ**，不能把它说成无需操作的一键导入，也不承诺逐栋自动贴合起伏地形。
+
+使用说明、示例和测试均放在 [`skills/blender-to-ovital-map/`](skills/blender-to-ovital-map/) 中。此前普吉太阳谷实测成功的“相对于地面 0.78 米”属于案例参数，不是其他项目通用的绝对海拔。

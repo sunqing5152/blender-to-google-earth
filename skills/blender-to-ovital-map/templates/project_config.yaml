@@ -1,0 +1,9 @@
+# blender-to-ovital-map 配置参考（V1 当前使用命令行参数）
+# 不把太阳谷坐标放入通用配置。
+source_kmz: /绝对路径/输入.kmz
+obj_dir: /绝对路径/独立OBJ和MTL
+anchor_model: 基准建筑名称
+obj_up_axis: Y  # 依据实际OBJ选 Y 或 Z，不可仅凭文件扩展名猜
+output_dir: /绝对路径/新的空目录
+altitude_policy: source_relative_if_applicable
+run_ovital_gui: false
