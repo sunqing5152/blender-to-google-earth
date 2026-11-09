@@ -5,6 +5,15 @@
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Blender 3.x/4.x](https://img.shields.io/badge/Blender-3.x%20%7C%204.x-orange.svg)](https://www.blender.org/)
 
+> **English:** Turn a Blender building or masterplan into a real-world KMZ and drop it
+> straight into Google Earth Pro — AI does the scan, the geo-registration, the DAE/KML
+> build and the QA screenshots. See [Quick Start](#-快速上手-quick-start) below.
+>
+> 📸 **效果图 / Showcase:** 左：导入前 Blender 原模型；右：同一片西侧别墅导入 Google Earth Pro 之后。
+> ![导入前 Blender / 导入后 Google Earth Pro](docs/showcase/comparison-blender-vs-google-earth.jpg)
+>
+> 🛒 **Also on Agensi:** https://www.agensi.io/skills/blender-to-google-earth （已核实可用，2026-11-09）
+
 ## 🎯 这个 Skill 到底是干什么的？
 
 简单一句话：**它让 AI 具备“把三维规划设计一键搬进真实地球”的完整生产能力。**
